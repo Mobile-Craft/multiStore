@@ -1,0 +1,27 @@
+---
+import SectionContainer from "../src/components/SectionContainer.astro";
+
+const { logoUrl, name, description } = Astro.props;
+---
+
+<SectionContainer
+    id="hero"
+    class="relative h-[30vh] md:h-[30vh] flex items-center justify-center text-center text-white overflow-hidden mt-18"
+>
+    <img
+        src={logoUrl}
+        alt="Hero"
+        class="absolute inset-0 w-full h-full object-contain"
+    />
+
+    <div
+        class="absolute inset-0 bg-black/30 backdrop-blur-none mix-blend-multiply"
+    >
+    </div>
+
+    <!-- Contenido -->
+    <div class="relative z-10 px-4">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 drop-shadow">{name}</h1>
+        <p class="text-lg md:text-xl drop-shadow-sm">{description}</p>
+    </div>
+</SectionContainer>

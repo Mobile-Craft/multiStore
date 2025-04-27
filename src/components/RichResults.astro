@@ -1,0 +1,91 @@
+---
+/** https://developers.google.com/search/docs/appearance/structured-data/organization */
+const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    url: "https://eldertavarez.vercel.app/",
+    image: "https://eldertavarez.vercel.app/elderTavarezLink.jpg",
+    sameAs: [
+        "https://www.instagram.com/moisestavarezgo",
+        "https://x.com/moisestavarez3",
+        "https://github.com/Mobile-Craft/mobileCraft",
+    ],
+    logo: "https://eldertavarez.vercel.app/elderTavarezLink.jpg",
+    name: "Portafolio Elder Tavarez",
+    alternateName: "Elder Tavarez",
+    description:
+        "Contrata a Elder Tavarez para Desarrollador tus aplicaciones Mobile y Web, con mas de 5 años de experiencia especializado en tecnologías modernas como React Natieve, Expo, React, Flutter y Node.js, Frontend",
+};
+
+/** https://developers.google.com/search/docs/appearance/structured-data/event */
+const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "Portafolio Elder Tavarez",
+    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode", // https://schema.org/EventAttendanceModeEnumeration
+    eventStatus: "https://schema.org/EventScheduled", // https://schema.org/EventStatusType
+    location: {
+        "@type": "Place",
+        name: "Santo Domingo República Dominicana",
+        address: {
+            "@type": "PostalAddress",
+            streetAddress: "Santo Domingo",
+            addressLocality: "Distrito Nacional",
+            postalCode: "11901",
+            addressRegion: "Distrito Nacional",
+            addressCountry: "ES",
+        },
+    },
+    image: ["https://eldertavarez.vercel.app/elderTavarezLink.jpg"],
+    description:
+        "Portafolio de Elder Tavárez - Desarrollador y Programador Mobile y Web donde muestra su esperiencia y proyectos realizados",
+    /* "offers": {}, // Añadir cuando las entradas estén disponibles https://schema.org/Offer */
+
+    organizer: {
+        "@type": "Person",
+        name: "Elder Tavarez",
+        url: "https://www.instagram.com/moisestavarezgo",
+    },
+};
+
+const FAQs = [
+    {
+        question: "¿Desarrollador mobile en santo domingo?",
+    },
+    {
+        question: "¿Desarrolldor frontend en santo domingo?",
+        answer: "Elder Tavarez <strong>+5 años de experiencia</strong> en el desarrollo de aplicaciones web y móviles",
+    },
+    {
+        question: "¿Desarrollador mobile?",
+        answer: "Elder Tavarez <strong>+5 años de experiencia</strong> en el desarrollo de aplicaciones web y móviles",
+    },
+    {
+        question: "¿Necesito crear una aplicacion mobil?",
+        answer: "Elder Tavarez <strong>+5 años de experiencia</strong> en el desarrollo de aplicaciones web y móviles",
+    },
+];
+
+/** https://developers.google.com/search/docs/appearance/structured-data/faqpage */
+const FAQSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        FAQs.map(({ answer, question }) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: answer,
+            },
+        })),
+    ],
+};
+---
+
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify(organizationSchema)}
+/>
+<script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(FAQSchema)} />
