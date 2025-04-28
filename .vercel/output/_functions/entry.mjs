@@ -1,16 +1,18 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports } from './chunks/entrypoint_C4OEq3yw.mjs';
-import { manifest } from './manifest_OUNVT5E0.mjs';
+import { c as createExports } from './chunks/entrypoint_ColPmU5X.mjs';
+import { manifest } from './manifest_rspUiLe0.mjs';
 
 const serverIslandMap = new Map();;
 
 const _page0 = () => import('./pages/_image.astro.mjs');
-const _page1 = () => import('./pages/index.astro.mjs');
-const _page2 = () => import('./pages/_---slug_.astro.mjs');
+const _page1 = () => import('./pages/api/store/_slug_.astro.mjs');
+const _page2 = () => import('./pages/index.astro.mjs');
+const _page3 = () => import('./pages/_---slug_.astro.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
-    ["src/pages/index.astro", _page1],
-    ["src/pages/[...slug].astro", _page2]
+    ["src/pages/api/store/[slug].ts", _page1],
+    ["src/pages/index.astro", _page2],
+    ["src/pages/[...slug].astro", _page3]
 ]);
 
 const _manifest = Object.assign(manifest, {
@@ -21,7 +23,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "b1c3e16b-b277-4b1e-91b2-6b630583d417",
+    "middlewareSecret": "6892839a-7876-4c35-8958-66bfea576d43",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);

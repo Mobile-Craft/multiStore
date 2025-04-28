@@ -7,51 +7,33 @@ import ProductLayout from "../../sections/ProductsLayaout";
 import { mockData3 } from "../../data/MockData";
 
 const url = new URL(Astro.request.url);
-const slug = url.pathname.split("/")[1] || "default";
+const slug = url.pathname.split("/")[1] || "";
 
 console.log("slug:", slug);
 
 let storeData = null;
 let error = null;
 
-try {
-    const res = await fetch(`https://showby.marcospd.ninja/catalog/${slug}`);
-    if (!res.ok) {
-        throw new Error("No se encontró la tienda");
+if (slug && slug !== "favicon.ico") {
+    try {
+        const res = await fetch(
+            `https://showby.marcospd.ninja/catalog/${slug}`,
+        );
+        if (!res.ok) {
+            throw new Error("No se encontró la tienda");
+        }
+        storeData = await res.json();
+        console.log("Respuesta de la API:", storeData);
+    } catch (err) {
+        console.error(err);
+        error = err;
     }
-    storeData = await res.json();
-    console.log("Respuesta de la API:", storeData);
-} catch (err) {
-    console.error(err);
-    error = err;
+} else {
+    console.log("No se hace fetch porque es favicon.ico u otro path inválido.");
 }
-
-// ✅ Solo si storeData existe armamos enrichedProducts
-const enrichedProducts = storeData
-    ? {
-          buttonColor: "bg-green-500",
-          priceColor: "text-green-600",
-          items: (storeData.categories ?? []).flatMap((category) =>
-              (category.products ?? []).map((product) => ({
-                  ...product,
-                  categoryId: category.name,
-              })),
-          ),
-      }
-    : {
-          buttonColor: "",
-          priceColor: "",
-          items: [],
-      };
-
-const { header, hero, products } = mockData3;
 ---
 
-<Layout
-    description="Tienda Online"
-    title={storeData?.name ?? "Tienda"}
-    canonical="./favicon.svg"
->
+<Layout description="Tienda Online" title={storeData?.name ?? "MultiStore"}>
     {
         error || !storeData ? (
             <div class="text-center p-10 text-red-500">
@@ -78,7 +60,16 @@ const { header, hero, products } = mockData3;
                         ],
                         selectStyle: "bg-green-500 text-white",
                     }}
-                    products={enrichedProducts}
+                    products={{
+                        buttonColor: "bg-green-500",
+                        priceColor: "text-green-600",
+                        items: (storeData.categories ?? []).flatMap((cat) =>
+                            (cat.products ?? []).map((prod) => ({
+                                ...prod,
+                                categoryId: cat.name,
+                            })),
+                        ),
+                    }}
                 />
             </>
         )

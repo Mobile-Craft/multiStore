@@ -9,9 +9,9 @@ interface Props {
 	title: string;
 	description: string;
 	canonical?: string;
-	image?: string;
+	// image?: string;
 }
-const { title, description, canonical, image } = Astro.props;
+const { title, description, canonical } = Astro.props;
 const { header, hero } = mockData3;
 ---
 
@@ -21,7 +21,7 @@ const { header, hero } = mockData3;
 		<SEO
 			canonical={canonical}
 			description={description}
-			image={image}
+			image={"/favicon.svg"}
 			title={title}
 		/>
 	</head>
@@ -45,7 +45,7 @@ const { header, hero } = mockData3;
 		font-family: "Geist Sans", system-ui, sans-serif;
 		scroll-behavior: smooth;
 	}
-	,
+
 	body {
 		color: rgba(255, 255, 255, 0.992);
 		display: flex;
