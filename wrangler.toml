@@ -1,7 +1,0 @@
-name = "multi-store"
-main = "./dist/_worker.js"
-account_id = "92fd91d03894fdc468063d549844d18b"
-compatibility_date = "2025-04-28"
-
-[site]
-bucket = "./dist"
