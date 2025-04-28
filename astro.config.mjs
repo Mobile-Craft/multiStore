@@ -8,12 +8,17 @@ import vercel from '@astrojs/vercel/serverless';
 
 import react from '@astrojs/react';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
+  // output: 'server',
+  // adapter: vercel({
+  //   edgeMiddleware: true,
+  // }),
   integrations: [tailwind(), react()],
-  output: 'server',
-  adapter: vercel({
-    edgeMiddleware: true,
+  adapter: cloudflare({
+    imageService: 'cloudflare'
   }),
-
+  output: 'server',
 });
