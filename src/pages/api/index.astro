@@ -1,6 +1,11 @@
 ---
 import { mockData3 } from "../../../data/MockData";
 import Header from "../../components/Header";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("tech-world")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 const { header, hero, products } = mockData3;
 ---
 

@@ -1,17 +1,20 @@
 ---
 import "../styles/global.css";
+import type { CollectionEntry } from "astro:content";
 import "@fontsource/geist-sans";
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header";
 import { mockData3 } from "../../data/MockData";
 
-interface Props {
+type Props = CollectionEntry<"tech-world">["data"];
+interface Props2 {
 	title: string;
 	description: string;
 	canonical?: string;
 	// image?: string;
 }
-const { title, description, canonical } = Astro.props;
+
+const { title, description, canonical } = Astro.props as Props2;
 const { header, hero } = mockData3;
 ---
 
