@@ -23,7 +23,7 @@
     "preview": "astro build && wrangler dev"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.501",
+    "@astrojs/cloudflare": "12.5.0",
     "@astrojs/react": "^4.2.5",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vercel": "^8.1.4",
