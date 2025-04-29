@@ -1,17 +1,19 @@
 ---
 import "../styles/global.css";
+import type { CollectionEntry } from "astro:content";
 import "@fontsource/geist-sans";
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header";
 import { mockData3 } from "../../data/MockData";
 
 interface Props {
-	title: string;
-	description: string;
+	title?: string;
+	description?: string;
 	canonical?: string;
-	image?: string;
+	// image?: string;
 }
-const { title, description, canonical, image } = Astro.props;
+
+const { title, description, canonical } = Astro.props as Props;
 const { header, hero } = mockData3;
 ---
 
@@ -19,10 +21,10 @@ const { header, hero } = mockData3;
 <html lang="en">
 	<head>
 		<SEO
-			canonical={canonical}
-			description={description}
-			image={image}
-			title={title}
+			canonical={"canonical"}
+			description={"tst"}
+			image={"/favicon.svg"}
+			title={"title"}
 		/>
 	</head>
 	<body class="relative text-black">
@@ -45,7 +47,7 @@ const { header, hero } = mockData3;
 		font-family: "Geist Sans", system-ui, sans-serif;
 		scroll-behavior: smooth;
 	}
-	,
+
 	body {
 		color: rgba(255, 255, 255, 0.992);
 		display: flex;
