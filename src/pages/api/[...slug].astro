@@ -18,6 +18,16 @@ try {
     console.error(err);
 }
 
+export async function getStaticPaths() {
+    const posts = await getCollection("tech-world");
+    return posts.map((post) => ({
+        params: { slug: post.id },
+        props: post,
+    }));
+}
+
+type Props = CollectionEntry<"tech-world">;
+
 // export async function getStaticPaths() {
 //     const posts = await getCollection("blog");
 //     return posts.map((post) => ({
