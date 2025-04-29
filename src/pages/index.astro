@@ -7,6 +7,22 @@ import Header from "../components/Header";
 import Layout from "../layouts/Layout.astro";
 
 const { header, hero, products } = mockData3;
+
+let storeName = "";
+
+try {
+	const res = await fetch("https://showby.marcospd.ninja/catalog/tech-world");
+	if (!res.ok) {
+		throw new Error("No se encontró la tienda");
+	}
+	const storeData: { name: string } = await res.json();
+	console.log("Respuesta de la API:", storeData);
+
+	// Asignamos el name
+	storeName = storeData.name;
+} catch (err) {
+	console.error(err);
+}
 ---
 
 <Layout
@@ -30,5 +46,10 @@ const { header, hero, products } = mockData3;
 		description={hero.subtitle}
 	/>
 
-	<ProductLayout client:load header={header} />
+	<div class="flex flex-col items-center justify-center">
+		<h1 class="text-3xl md:text-5xl font-bold mb-4 drop-shadow">
+			<h1 class="text-3xl">{storeName}</h1>
+		</h1>
+		<ProductLayout client:load header={header} />
+	</div>
 </Layout>

@@ -7,6 +7,22 @@ const posts = (await getCollection("tech-world")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const { header, hero, products } = mockData3;
+
+let storeName = "";
+
+try {
+	const res = await fetch("https://showby.marcospd.ninja/catalog/tech-world");
+	if (!res.ok) {
+		throw new Error("No se encontró la tienda");
+	}
+	const storeData: { name: string } = await res.json();
+	console.log("Respuesta de la API:", storeData);
+
+	// Asignamos el name
+	storeName = storeData.name;
+} catch (err) {
+	console.error(err);
+}
 ---
 
 <!doctype html>
@@ -95,6 +111,7 @@ const { header, hero, products } = mockData3;
 		/>
 		<main>
 			<section>
+				<h1>{storeName}</h1>
 				<ul>
 					{
 						products.items.map((post) => (
